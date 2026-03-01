@@ -2,7 +2,7 @@
 FROM cgr.dev/chainguard/wolfi-base:latest AS rootfs
 
 RUN apk add gnutar zstd curl && \
-    curl -fLOJ --retry 3 https://fastly.mirror.pkgbuild.com/iso/$VERSION/archlinux-bootstrap-x86_64.tar.zst && \
+    curl -fLOJ --retry 3 https://fastly.mirror.pkgbuild.com/iso/latest/archlinux-bootstrap-*-x86_64.tar.zst && \
     echo "$SHASUM archlinux-bootstrap-x86_64.tar.zst" > sha256sum.txt && \
     sha256sum -c sha256sum.txt || exit 1 && \
     tar -xf /archlinux-bootstrap-x86_64.tar.zst --numeric-owner && \
