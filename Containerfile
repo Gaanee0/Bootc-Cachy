@@ -1,8 +1,12 @@
 # Build base with arch-bootstrap
 FROM cgr.dev/chainguard/wolfi-base:latest AS rootfs
 
+ENV VERSION="2026.02.01"
+ENV SHASUM="5debe75527010999719815ca964b6f630eac525167c6ad00ba1f7aa510ba657a"
+ENV DRACTUT_NO_XATTR=1
+
 RUN apk add gnutar zstd curl && \
-    curl -fLOJ --retry 3 https://fastly.mirror.pkgbuild.com/iso/latest/archlinux-bootstrap-*-x86_64.tar.zst && \
+    curl -fLOJ --retry 3 https://fastly.mirror.pkgbuild.com/iso/$VERSION/archlinux-bootstrap-x86_64.tar.zst && \
     echo "$SHASUM archlinux-bootstrap-x86_64.tar.zst" > sha256sum.txt && \
     sha256sum -c sha256sum.txt || exit 1 && \
     tar -xf /archlinux-bootstrap-x86_64.tar.zst --numeric-owner && \
@@ -10,9 +14,6 @@ RUN apk add gnutar zstd curl && \
     apk del gnutar zstd curl && \
     apk cache clean
 
-ENV VERSION="2026.02.01"
-ENV SHASUM="5debe75527010999719815ca964b6f630eac525167c6ad00ba1f7aa510ba657a"
-ENV DRACTUT_NO_XATTR=1
 
 FROM scratch AS system
 COPY --from=rootfs /root.x86_64/ /
