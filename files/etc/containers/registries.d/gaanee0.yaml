@@ -1,0 +1,3 @@
+docker:
+  ghcr.io/gaanee0:
+    use-sigstore-attachments: true

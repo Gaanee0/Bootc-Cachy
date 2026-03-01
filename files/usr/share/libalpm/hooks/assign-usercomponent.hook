@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Assigning user.component on packages...
+When = PostTransaction
+Exec = /usr/libexec/assign-usercomponent.sh
+NeedsTargets
