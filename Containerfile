@@ -14,7 +14,6 @@ RUN apk add gnutar zstd curl && \
     apk del gnutar zstd curl && \
     apk cache clean
 
-
 FROM scratch AS system
 COPY --from=rootfs /root.x86_64/ /
 
@@ -60,7 +59,7 @@ RUN pacman-key --init && \
 RUN pacman-key --recv-keys F3B607488DB35A47 --keyserver keyserver.ubuntu.com && \
     pacman-key --lsign-key F3B607488DB35A47 && \
     pacman -Sy && \
-    pacman -S --needed --allow-weak-key-signatures --noconfirm cachyos-keyring cachyos-mirrorlist cachyos-v3-mirrorlist cachyos-v4-mirrorlist cachyos-hooks chwd && \
+    pacman -S --needed --noconfirm cachyos-keyring cachyos-mirrorlist cachyos-v3-mirrorlist cachyos-v4-mirrorlist cachyos-hooks chwd && \
     pacman -Syu --noconfirm
 
 # Chaotic AUR repo
