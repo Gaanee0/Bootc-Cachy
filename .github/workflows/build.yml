@@ -2,8 +2,8 @@
 name: Build container image
 on:
   pull_request:
-   branches:
-     - main
+    branches:
+      - main
   schedule:
     - cron: "30 06 * * SUN" # 06:30am UTC on sunday
   push:
