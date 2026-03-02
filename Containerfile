@@ -28,6 +28,6 @@ RUN pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar
 RUN pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
 RUN echo -e '[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist' >> /etc/pacman.conf
 
-pacman -S chaotic-aur/niri-git
+pacman -S --needed --noconfirm chaotic-aur/niri-git
 
 RUN bootc container lint
