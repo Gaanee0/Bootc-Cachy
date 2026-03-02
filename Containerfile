@@ -99,9 +99,7 @@ RUN mkdir -p /etc/sudoers.d && \
     tee "/etc/sudoers.d/wheel" && chmod 440 /etc/sudoers.d/wheel
 
 # Enable some necessary services.
-RUN systemctl enable NetworkManager.service && \
-    systemctl enable brew-setup.service &&\
-    systemctl --global enable cachyos-gamescope-autologin.service
+RUN  systemctl enable brew-setup.service
 
 # Handling Bootc issues # https://github.com/bootc-dev/bootc/issues/1801.
 RUN printf "systemdsystemconfdir=/etc/systemd/system\nsystemdsystemunitdir=/usr/lib/systemd/system\n" | tee /usr/lib/dracut/dracut.conf.d/30-bootcrew-fix-bootc-module.conf && \
