@@ -122,7 +122,6 @@ RUN ln -sf ../usr/lib/os-release /etc/os-release
 RUN ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
 
 # Containers setup.
-RUN
 RUN mkdir -p /etc/pki/containers
 COPY files/etc /etc
 COPY cosign.pub /etc/pki/containers/cosign.pub
