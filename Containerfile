@@ -90,13 +90,12 @@ RUN pacman -Sy --needed --noconfirm chaotic-aur/niri-git && pacman -S --clean --
 
 # Sudo changes for ease of use.
 RUN mkdir -p /etc/sudoers.d && \
-    echo "%wheel ALL=(ALL) ALL"  \
-    Defaults pwfeedback \
-    Defaults insults \
-    Defaults secure_path="/usr/local/bin:/usr/bin:/bin:/home/linuxbrew/.linuxbrew/bin" \
-    Defaults env_keep += "EDITOR VISUAL PATH" \
-    Defaults timestamp_timeout=0' \
-    tee "/etc/sudoers.d/wheel"
+    echo -e "%wheel ALL=(ALL) ALL"  \n\
+    Defaults pwfeedback \n\
+    Defaults insults \n\
+    Defaults secure_path="/usr/local/bin:/usr/bin:/bin:/home/linuxbrew/.linuxbrew/bin" \n\
+    Defaults env_keep += "EDITOR VISUAL PATH" \n\
+    Defaults timestamp_timeout=0' > /etc/sudoers.d/wheel
 
 # Handling Bootc issues # https://github.com/bootc-dev/bootc/issues/1801.
 RUN printf "systemdsystemconfdir=/etc/systemd/system\nsystemdsystemunitdir=/usr/lib/systemd/system\n" | tee /usr/lib/dracut/dracut.conf.d/30-bootcrew-fix-bootc-module.conf && \
