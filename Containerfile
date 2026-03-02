@@ -1,9 +1,10 @@
+# Base container for building the image.
+FROM cgr.dev/chainguard/wolfi-base:latest AS rootfs
+
 # Environment variables to export to the image.
 ENV VERSION="2026.03.01"
 ENV SHASUM="eb52fd74f466658f039f2f7fe9bced015d29b23c569e72c5abb7015bdb6d5c7f"
-
-# Base container for building the image.
-FROM cgr.dev/chainguard/wolfi-base:latest AS rootfs
+ENV DRACUT_NO_XATTR=1
 
 # Needed container pkgs for downloading and extracting the bootstrap.
 RUN apk add gnutar zstd curl && \
